@@ -1,0 +1,20 @@
+version: '3.1'
+services:
+  postgres-exporter:
+    image: wrouesnel/postgres_exporter:latest
+    hostname: ""
+    container_name: postgres-exporter
+    restart: always
+    command: 
+      - "--extend.query-path=/queries.yml"
+#      - "--log.level=debug"
+#      - "--disable-default-metrics"
+#      - "--disable-settings-metrics" 
+    volumes:
+      - ./volumes/static/queries.yml:/queries.yml
+
+    environment:
+      - DATA_SOURCE_NAME=postgresql://POSTGRES_USER_1:POSTGRES_PASS_1@POSTGRES_IP_1:POSTGRES_PORT_1/POSTGRES_DB_1?sslmode=disable,postgresql://POSTGRES_USER_2:POSTGRES_PASS_2@POSTGRES_IP_2:POSTGRES_PORT_2/POSTGRES_DB_2?sslmode=disable
+      - TZ=Asia/Tehran
+    ports:
+      - 9187:9187
