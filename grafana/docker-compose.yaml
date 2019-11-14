@@ -1,0 +1,17 @@
+version: '3.1'
+services:
+  grafana:
+    image: grafana/grafana:6.4.4
+    container_name: grafana
+    environment:
+      - GF_SERVER_ROOT_URL=YOUR_SERVER_IP
+      - GF_SECURITY_ADMIN_PASSWORD=asadasad
+      - TZ=Asia/Tehran
+    volumes:
+      - ./volumes/dynamic/data:/var/lib/grafana
+      - ./volumes/static:/etc/grafana
+      - /var/log/docker/grafana-babr:/var/log/grafana
+    ports:
+      - 3000:3000
+    user: "0"
+
