@@ -1,0 +1,23 @@
+version: "3"
+services:
+  prometheus:
+    image: dockerproxy.bale.ai/prom/prometheus:v2.12.0
+    hostname: ""
+    container_name: prometheus
+    volumes:
+      - ./volumes/static/entrypoint.sh:/bin/prometheus-entrypoint.sh
+      - ./volumes/static/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./volumes/dynamic/prometheus/:/var/lib/prometheus/data
+    user: root
+    entrypoint:
+      - /bin/sh
+      - /bin/prometheus-entrypoint.sh
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/var/lib/prometheus/data
+      - --storage.tsdb.min-block-duration=1h
+      - --storage.tsdb.max-block-duration=6h
+      - --storage.tsdb.retention=7d
+      - --web.console.libraries=/usr/share/prometheus/console_libraries
+      - --web.console.templates=/usr/share/prometheus/consoles
+    ports:
+      - 9090:9090

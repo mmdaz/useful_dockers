@@ -1,0 +1,7 @@
+global:
+    scrape_interval: 30s
+
+scrape_configs:
+  - job_name: 'your_job'
+    static_configs:
+      - targets: ['targer_host:target_port']
