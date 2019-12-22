@@ -1,2 +1,3 @@
 # useful_dockers
-useful Dockefiles and docker-compose files of different projects. 
+Useful Dockefiles and docker-compose files of different projects. 
+If you have a useful docker image make a pull request for improving the collection :D
