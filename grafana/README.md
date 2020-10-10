@@ -1,4 +1,4 @@
-# postgres-exporter docker-compose
+# grafana docker-compose example
 ###### Run follow commands
 ```
 sudo mkdir -p ./volumes/static/
